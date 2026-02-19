@@ -1,0 +1,1451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Fusion Solutions Group helps systems integrators grow revenue and profit by adding new technologies—without distracting from the core business." />
+  <title>Fusion Solutions Group | Fractional CTO for Systems Integrators</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand:       #0c5394;
+      --brand-dark:  #083d72;
+      --brand-light: #e8f1fb;
+      --accent:      #e8840c;
+      --accent-dark: #c96e08;
+      --ink:         #0b1220;
+      --ink-2:       #3a4459;
+      --muted:       #6b7690;
+      --bg:          #f5f0e7;
+      --bg-dark:     #0b1a2e;
+      --white:       #ffffff;
+      --line:        rgba(11,18,32,.09);
+      --line-dark:   rgba(255,255,255,.10);
+      --shadow-sm:   0 4px 14px rgba(11,18,32,.06);
+      --shadow:      0 12px 32px rgba(11,18,32,.09);
+      --shadow-lg:   0 24px 56px rgba(11,18,32,.13);
+      --radius:      20px;
+      --radius-sm:   14px;
+      --max:         1140px;
+      --pad:         clamp(18px,3vw,32px);
+      --font-head:   'Sora', ui-sans-serif, system-ui, sans-serif;
+      --font-body:   'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--ink);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 2*var(--pad))); margin-inline: auto; }
+    img { display: block; max-width: 100%; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(12,83,148,.35); }
+      50%       { box-shadow: 0 0 0 8px rgba(12,83,148,0); }
+    }
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-6px); }
+    }
+    .anim-1 { animation: fadeUp .65s ease both; }
+    .anim-2 { animation: fadeUp .65s .10s ease both; }
+    .anim-3 { animation: fadeUp .65s .20s ease both; }
+    .anim-4 { animation: fadeUp .65s .30s ease both; }
+    .anim-5 { animation: fadeUp .65s .40s ease both; }
+
+    /* ── NAV ── */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(12px);
+      background: rgba(255,255,255,.88);
+      border-bottom: 1px solid var(--line);
+      transition: box-shadow .2s;
+    }
+    .topbar.scrolled { box-shadow: 0 2px 20px rgba(11,18,32,.08); }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 0; gap: 14px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 220px; }
+    .brand img { height: 34px; width: auto; }
+
+    .navlinks {
+      display: flex; align-items: center; gap: 2px;
+      font-family: var(--font-head); font-weight: 600; font-size: 13.5px;
+      color: var(--ink-2);
+    }
+    .navlinks a {
+      padding: 9px 11px; border-radius: 10px;
+      transition: background .15s, color .15s;
+      position: relative;
+    }
+    .navlinks a:hover { background: var(--brand-light); color: var(--brand); }
+    .navlinks a.active { color: var(--brand); }
+    .navlinks a.active::after {
+      content: ""; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+      width: 18px; height: 2px; background: var(--brand); border-radius: 2px;
+    }
+
+    .navcta { display: flex; align-items: center; gap: 10px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 20px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-head); font-weight: 700; font-size: 14px;
+      border: 1.5px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer; white-space: nowrap;
+      transition: transform .15s, box-shadow .15s, background .15s, border-color .15s;
+      letter-spacing: -.1px;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+    .btn.primary {
+      background: linear-gradient(160deg, var(--brand) 0%, var(--brand-dark) 100%);
+      color: var(--white); border-color: transparent;
+      box-shadow: 0 6px 20px rgba(12,83,148,.28);
+    }
+    .btn.primary:hover {
+      background: linear-gradient(160deg, #0d5faa 0%, var(--brand) 100%);
+      box-shadow: 0 10px 28px rgba(12,83,148,.38);
+    }
+    .btn.ghost { background: rgba(255,255,255,.70); }
+    .btn.accent {
+      background: linear-gradient(160deg, var(--accent) 0%, var(--accent-dark) 100%);
+      color: var(--white); border-color: transparent;
+      box-shadow: 0 6px 20px rgba(232,132,12,.28);
+    }
+    .btn.accent:hover { box-shadow: 0 10px 28px rgba(232,132,12,.40); }
+    .btn.outline-white {
+      background: transparent; border-color: rgba(255,255,255,.30); color: var(--white);
+    }
+    .btn.outline-white:hover { background: rgba(255,255,255,.12); }
+
+    .btn-lg { padding: 14px 26px; font-size: 15px; border-radius: 16px; }
+
+    .hamburger {
+      display: none; width: 42px; height: 42px;
+      border-radius: 12px; border: 1px solid var(--line);
+      background: var(--white); box-shadow: var(--shadow-sm);
+      cursor: pointer; align-items: center; justify-content: center;
+      flex-direction: column; gap: 4px;
+    }
+    .hamburger span {
+      width: 18px; height: 2px; background: rgba(11,18,32,.75);
+      display: block; border-radius: 2px;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .mobileMenu { display: none; padding: 0 0 14px; }
+    .mobileMenu .panel {
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: rgba(255,255,255,.96); box-shadow: var(--shadow); overflow: hidden;
+    }
+    .mobileMenu a {
+      display: block; padding: 14px 16px;
+      font-family: var(--font-head); font-weight: 700; font-size: 14px;
+      color: var(--ink-2); border-top: 1px solid var(--line);
+    }
+    .mobileMenu a:first-child { border-top: none; }
+    .mobileMenu a:hover { background: var(--brand-light); color: var(--brand); }
+    .mobileMenu .row {
+      display: flex; gap: 10px; padding: 14px 16px; border-top: 1px solid var(--line);
+    }
+    .mobileMenu .row .btn { flex: 1; justify-content: center; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: clamp(52px, 7vw, 88px) 0 clamp(44px, 6vw, 68px);
+      background:
+        radial-gradient(900px 500px at 15% 0%, rgba(12,83,148,.09), transparent 60%),
+        radial-gradient(700px 400px at 90% 15%, rgba(12,83,148,.07), transparent 55%),
+        radial-gradient(400px 300px at 50% 100%, rgba(232,132,12,.04), transparent 70%),
+        linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--line);
+      position: relative; overflow: hidden;
+    }
+    /* subtle dot-grid texture */
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(12,83,148,.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    }
+
+    .heroIntro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto clamp(36px, 4vw, 52px);
+      position: relative; z-index: 1;
+    }
+    .heroGrid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: clamp(28px, 4vw, 56px);
+      align-items: start;
+      position: relative; z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 7px 14px; border-radius: 999px;
+      background: var(--brand-light); color: var(--brand);
+      font-family: var(--font-head); font-weight: 700; font-size: 13px;
+      letter-spacing: .2px; border: 1px solid rgba(12,83,148,.15);
+    }
+    .eyebrow .dot {
+      width: 8px; height: 8px; border-radius: 999px;
+      background: var(--brand);
+      animation: pulse-dot 2.4s ease infinite;
+    }
+
+    h1 {
+      font-family: var(--font-head);
+      margin: 18px 0 0;
+      font-size: clamp(36px, 5vw, 66px);
+      line-height: 1.04; letter-spacing: -2px;
+      color: var(--ink);
+    }
+    h1 em { font-style: normal; color: var(--brand); }
+
+    .hero-problem {
+      margin: 0 0 20px;
+      font-size: clamp(16px, 1.5vw, 18px);
+      line-height: 1.65;
+      color: var(--ink-2);
+      max-width: 58ch;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+    }
+
+    .subhead {
+      margin: 0 0 26px;
+      font-size: 16px; line-height: 1.65;
+      color: var(--muted); max-width: 56ch;
+    }
+
+    .heroBullets { display: grid; gap: 10px; margin-bottom: 30px; }
+    .bullet {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 13px 16px; border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.85);
+      box-shadow: var(--shadow-sm);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .bullet:hover { border-color: rgba(12,83,148,.18); box-shadow: var(--shadow); }
+    .check {
+      width: 22px; height: 22px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      display: grid; place-items: center; flex: 0 0 auto; margin-top: 2px;
+    }
+    .check svg { width: 13px; height: 13px; fill: white; }
+    .bullet strong { font-family: var(--font-head); font-weight: 700; font-size: 14px; display: block; margin-bottom: 2px; }
+    .bullet span { color: var(--muted); font-size: 14px; line-height: 1.45; }
+
+    .heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Hero right card */
+    .heroCard {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow-lg);
+      padding: 28px;
+      position: relative; overflow: hidden;
+    }
+    .heroCard::before {
+      content: "";
+      position: absolute; top: -60px; right: -60px;
+      width: 220px; height: 220px; border-radius: 999px;
+      background: radial-gradient(circle, rgba(12,83,148,.10), transparent 70%);
+      pointer-events: none;
+    }
+    .heroCard::after {
+      content: "";
+      position: absolute; bottom: -80px; left: -40px;
+      width: 180px; height: 180px; border-radius: 999px;
+      background: radial-gradient(circle, rgba(232,132,12,.06), transparent 70%);
+      pointer-events: none;
+    }
+
+    .ideal-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: 999px; padding: 6px 12px;
+      font-family: var(--font-head); font-weight: 700; font-size: 12px;
+      color: var(--muted); text-transform: uppercase; letter-spacing: .5px;
+      margin-bottom: 14px;
+    }
+
+    .heroCard h3 {
+      font-family: var(--font-head); font-size: 18px; font-weight: 800;
+      margin: 0 0 8px; letter-spacing: -.3px;
+    }
+    .heroCard p { margin: 0 0 20px; color: var(--ink-2); line-height: 1.6; font-size: 15px; }
+
+    .fit-checks { display: grid; gap: 9px; margin-bottom: 22px; }
+    .fit-row {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 14px; line-height: 1.4;
+    }
+    .fit-yes { color: #1a9e5c; font-weight: 700; flex: 0 0 auto; margin-top: 1px; }
+    .fit-no  { color: #d14b2a; font-weight: 700; flex: 0 0 auto; margin-top: 1px; }
+    .fit-row span { color: var(--ink-2); }
+
+    .heroCard .divider { height: 1px; background: var(--line); margin: 20px 0; }
+    .fine { font-size: 12px; color: var(--muted); margin-top: 10px; text-align: center; line-height: 1.5; }
+    .fine a { color: var(--brand); font-weight: 700; }
+
+    /* ── TRUST BAR ── */
+    .trustbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+    .trustbar-inner {
+      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    }
+    .trustbar-label {
+      font-family: var(--font-head); font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .8px; color: var(--muted);
+      white-space: nowrap;
+    }
+    .trustbar-divider { width: 1px; height: 20px; background: var(--line); flex: 0 0 auto; }
+    .trustbar-logos {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    }
+    .trustbar-chip {
+      padding: 5px 13px; border-radius: 999px;
+      background: var(--bg); border: 1px solid var(--line);
+      font-family: var(--font-head); font-size: 12px; font-weight: 700;
+      color: var(--ink-2); letter-spacing: .1px;
+      transition: border-color .15s, color .15s;
+    }
+    .trustbar-chip:hover { border-color: rgba(12,83,148,.25); color: var(--brand); }
+
+    /* ── STAT STRIP ── */
+    .statstrip {
+      background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
+      padding: 32px 0;
+    }
+    .statstrip-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .statstrip-item {
+      text-align: center;
+      padding: 0 24px;
+      border-right: 1px solid rgba(255,255,255,.12);
+    }
+    .statstrip-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-head); font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800; color: var(--white);
+      letter-spacing: -1.5px; line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label {
+      font-size: 13px; color: rgba(255,255,255,.60);
+      line-height: 1.4; font-weight: 500;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: clamp(52px, 6vw, 80px) 0; }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-head); font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .9px;
+      color: var(--brand); margin-bottom: 12px;
+    }
+    .section-label::before {
+      content: ""; display: block;
+      width: 18px; height: 2px; background: var(--brand); border-radius: 2px;
+    }
+
+    h2 {
+      font-family: var(--font-head);
+      font-size: clamp(26px, 3vw, 38px);
+      letter-spacing: -1.1px; line-height: 1.07;
+      margin: 0 0 12px;
+    }
+    .section-sub {
+      font-size: 16px; line-height: 1.65; color: var(--muted);
+      max-width: 58ch; margin: 0 0 40px;
+    }
+
+    /* ── WINS ── */
+    .wins-section {
+      background: var(--bg);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .wins-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+    }
+    .win {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .win:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+    .win-head {
+      padding: 22px 22px 16px;
+      background: linear-gradient(135deg, rgba(12,83,148,.06), transparent 70%);
+      border-bottom: 1px solid var(--line);
+    }
+    .win-num {
+      font-family: var(--font-head); font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .8px; color: var(--muted);
+    }
+    .win-head h3 {
+      font-family: var(--font-head); font-size: 17px; font-weight: 800;
+      letter-spacing: -.3px; margin: 6px 0 0;
+    }
+
+    .win-metric {
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; gap: 14px;
+      background: linear-gradient(90deg, rgba(12,83,148,.04), transparent);
+    }
+    .win-metric .big {
+      font-family: var(--font-head); font-size: 36px; font-weight: 800;
+      color: var(--brand); letter-spacing: -1.5px; line-height: 1;
+      white-space: nowrap;
+    }
+    .win-metric .label {
+      font-size: 13px; line-height: 1.4; color: var(--ink-2); font-weight: 500;
+    }
+
+    .win-body { padding: 18px 22px 24px; display: grid; gap: 9px; flex: 1; }
+    .win-row { font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+    .win-row b { color: var(--ink); font-weight: 700; }
+
+    /* ── SERVICES ── */
+    .services-section { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 14px;
+    }
+    .service-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      padding: 22px 18px;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: rgba(12,83,148,.22);
+    }
+    .service-icon {
+      width: 42px; height: 42px; border-radius: 13px;
+      background: var(--brand-light);
+      display: grid; place-items: center;
+      margin-bottom: 14px;
+    }
+    .service-icon svg { width: 20px; height: 20px; fill: var(--brand); }
+    .service-card .tag {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-head); font-weight: 800; font-size: 10.5px;
+      color: var(--brand); background: var(--brand-light);
+      border: 1px solid rgba(12,83,148,.14);
+      border-radius: 999px; padding: 4px 10px;
+      letter-spacing: .3px; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .service-card h3 {
+      font-family: var(--font-head); font-size: 15px; font-weight: 800;
+      letter-spacing: -.2px; margin: 0 0 7px;
+    }
+    .service-card p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--muted); }
+
+    /* ── MID-PAGE CTA STRIP ── */
+    .midcta {
+      background: var(--bg);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 48px 0;
+    }
+    .midcta-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .midcta-text h3 {
+      font-family: var(--font-head); font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 800; letter-spacing: -.8px; margin: 0 0 8px; color: var(--ink);
+    }
+    .midcta-text p { margin: 0; color: var(--muted); font-size: 16px; max-width: 52ch; }
+    .midcta-text strong { color: var(--brand); }
+
+    /* ── SCALE (dark section) ── */
+    .scale-section {
+      background: var(--bg-dark);
+      color: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .scale-section::before {
+      content: "";
+      position: absolute; top: -200px; left: -200px;
+      width: 600px; height: 600px; border-radius: 999px;
+      background: radial-gradient(circle, rgba(12,83,148,.30), transparent 65%);
+      pointer-events: none;
+    }
+    .scale-section::after {
+      content: "";
+      position: absolute; bottom: -150px; right: -100px;
+      width: 400px; height: 400px; border-radius: 999px;
+      background: radial-gradient(circle, rgba(12,83,148,.18), transparent 65%);
+      pointer-events: none;
+    }
+    .scale-section .section-label { color: rgba(255,255,255,.50); }
+    .scale-section .section-label::before { background: rgba(255,255,255,.35); }
+    .scale-section h2 { color: var(--white); }
+    .scale-section .section-sub { color: rgba(255,255,255,.55); }
+
+    .scale-cards {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 14px;
+      position: relative; z-index: 1;
+    }
+    .scale-card {
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.05);
+      padding: 22px 16px;
+      position: relative; z-index: 1;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+    .scale-card:hover {
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-3px);
+    }
+    .scale-step-letter {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 18px;
+    }
+    .scale-lchar {
+      width: 40px; height: 40px; border-radius: 12px; flex: 0 0 auto;
+      background: var(--accent);
+      box-shadow: 0 4px 16px rgba(232,132,12,.45);
+      display: grid; place-items: center;
+      font-family: var(--font-head); font-weight: 800; font-size: 20px;
+      color: white; letter-spacing: -0.5px;
+    }
+    .scale-lword {
+      font-family: var(--font-head); font-weight: 800; font-size: 15px;
+      color: white; text-transform: uppercase; letter-spacing: 2px;
+      line-height: 1;
+    }
+    .scale-card-h3 {
+      font-family: var(--font-head); font-size: 15px; font-weight: 600;
+      margin: 0 0 8px; color: rgba(255,255,255,.75); letter-spacing: -.1px;
+    }
+    .scale-card-p {
+      font-size: 13px; color: rgba(255,255,255,.50); margin: 0; line-height: 1.6;
+    }
+
+    /* ── WHO IT'S FOR ── */
+    .fit-section { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .fit-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+    }
+    .fit-panel {
+      border-radius: var(--radius); border: 1px solid var(--line);
+      background: var(--white); box-shadow: var(--shadow-sm);
+      padding: 30px;
+    }
+    .fit-panel.yes-panel { border-top: 3px solid #1a9e5c; }
+    .fit-panel.no-panel  { border-top: 3px solid #d14b2a; }
+    .fit-panel h3 {
+      font-family: var(--font-head); font-size: 17px; font-weight: 800;
+      letter-spacing: -.3px; margin: 0 0 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .fit-panel h3 .badge {
+      width: 28px; height: 28px; border-radius: 999px;
+      display: grid; place-items: center;
+      font-size: 14px; flex: 0 0 auto;
+    }
+    .badge-yes { background: rgba(26,158,92,.12); }
+    .badge-no  { background: rgba(209,75,42,.10); }
+    .fit-list { display: grid; gap: 10px; }
+    .fit-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 14px; line-height: 1.55; color: var(--ink-2);
+      padding: 10px 12px; border-radius: 10px;
+      transition: background .15s;
+    }
+    .fit-item:hover { background: var(--bg); }
+    .fit-icon { flex: 0 0 auto; font-size: 15px; margin-top: 0px; font-weight: 700; }
+
+    /* ── FAQ ── */
+    .faq-section { background: var(--white); }
+    .faq-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start; }
+    .faq-sidebar { position: sticky; top: 90px; }
+    .faq-sidebar h3 { font-family: var(--font-head); font-size: 24px; font-weight: 800; letter-spacing: -.5px; margin: 0 0 12px; }
+    .faq-sidebar p { color: var(--muted); line-height: 1.65; margin: 0 0 20px; }
+
+    .faq {
+      border-radius: var(--radius); border: 1px solid var(--line);
+      background: var(--white); box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .qa { border-top: 1px solid var(--line); }
+    .qa:first-child { border-top: none; }
+    .q {
+      width: 100%; text-align: left; padding: 18px 22px;
+      background: transparent; border: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      cursor: pointer; font-family: var(--font-head); font-weight: 700; font-size: 15px;
+      color: var(--ink); transition: background .15s;
+    }
+    .q:hover { background: var(--bg); }
+    .chev {
+      width: 18px; height: 18px; flex: 0 0 auto;
+      transition: transform .25s ease;
+    }
+    .qa.open .chev { transform: rotate(180deg); }
+    .a {
+      display: none; padding: 0 22px 20px;
+      color: var(--ink-2); line-height: 1.7; font-size: 14.5px;
+    }
+    .qa.open .a { display: block; }
+    .a ul { margin: 10px 0 0; padding-left: 20px; }
+    .a ul li { margin-bottom: 6px; }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--bg); border-top: 1px solid var(--line); }
+    .contactGrid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 18px; align-items: start; }
+
+    .panel {
+      border-radius: var(--radius); border: 1px solid var(--line);
+      background: var(--white); box-shadow: var(--shadow);
+      padding: 30px;
+    }
+    .panel h3 {
+      font-family: var(--font-head); font-size: 19px; font-weight: 800;
+      margin: 0 0 6px; letter-spacing: -.4px;
+    }
+    .panel > p { margin: 0 0 22px; color: var(--muted); font-size: 15px; line-height: 1.55; }
+
+    .contactList { display: grid; gap: 10px; }
+    .contactItem {
+      display: flex; gap: 12px; align-items: center;
+      padding: 14px 16px; border: 1px solid var(--line);
+      border-radius: var(--radius-sm); background: var(--bg);
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .contactItem:hover { border-color: rgba(12,83,148,.28); box-shadow: var(--shadow-sm); }
+    .c-icon {
+      width: 38px; height: 38px; border-radius: 12px;
+      background: var(--brand-light);
+      display: grid; place-items: center; flex: 0 0 auto;
+    }
+    .c-icon svg { width: 18px; height: 18px; fill: var(--brand); }
+    .contactItem .clabel { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 2px; }
+    .contactItem .val { font-weight: 700; font-size: 15px; color: var(--brand); }
+
+    form { display: grid; gap: 13px; }
+    .field { display: grid; gap: 5px; }
+    label { font-family: var(--font-head); font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+    input, textarea, select {
+      width: 100%; padding: 12px 14px;
+      border-radius: var(--radius-sm); border: 1.5px solid var(--line);
+      background: var(--bg); font-family: var(--font-body); font-size: 14px;
+      color: var(--ink); outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(107,118,144,.55); }
+    textarea { min-height: 115px; resize: vertical; }
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(12,83,148,.40);
+      box-shadow: 0 0 0 4px rgba(12,83,148,.08);
+      background: var(--white);
+    }
+    .formRow { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+
+    /* Form success state */
+    .form-success {
+      display: none;
+      text-align: center; padding: 32px 24px;
+      border-radius: var(--radius);
+      background: rgba(26,158,92,.06);
+      border: 1px solid rgba(26,158,92,.20);
+    }
+    .form-success.visible { display: block; }
+    .form-success .icon {
+      width: 52px; height: 52px; border-radius: 999px;
+      background: rgba(26,158,92,.12); display: grid; place-items: center;
+      margin: 0 auto 16px;
+    }
+    .form-success .icon svg { width: 26px; height: 26px; fill: #1a9e5c; }
+    .form-success h4 { font-family: var(--font-head); font-size: 20px; font-weight: 800; margin: 0 0 8px; }
+    .form-success p { color: var(--muted); margin: 0; line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-dark); color: rgba(255,255,255,.50);
+      padding: 32px 0 40px;
+    }
+    .foot {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .foot-brand img { height: 30px; width: auto; opacity: .65; }
+    .miniLinks { display: flex; gap: 8px; flex-wrap: wrap; }
+    .miniLinks a {
+      padding: 7px 12px; border-radius: 10px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+      font-family: var(--font-head); font-weight: 700; font-size: 12px;
+      color: rgba(255,255,255,.55);
+      transition: background .15s, color .15s;
+    }
+    .miniLinks a:hover { background: rgba(255,255,255,.12); color: rgba(255,255,255,.88); }
+    .copy { font-size: 12px; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: .08s; }
+    .reveal-delay-2 { transition-delay: .16s; }
+    .reveal-delay-3 { transition-delay: .24s; }
+    .reveal-delay-4 { transition-delay: .32s; }
+    .reveal-delay-5 { transition-delay: .40s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .heroIntro { max-width: 100%; }
+      .heroGrid { grid-template-columns: 1fr; }
+      .wins-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .scale-cards { grid-template-columns: 1fr 1fr; }
+      .contactGrid { grid-template-columns: 1fr; }
+      .fit-grid { grid-template-columns: 1fr; }
+      .faq-layout { grid-template-columns: 1fr; gap: 24px; }
+      .faq-sidebar { position: static; }
+      .statstrip-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
+      .statstrip-item:nth-child(2) { border-right: none; }
+      .midcta-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 720px) {
+      .navlinks, .navcta { display: none; }
+      .hamburger { display: inline-flex; }
+      .mobileMenu { display: block; }
+      .formRow { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .scale-cards { grid-template-columns: 1fr; }
+      .trustbar-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .trustbar-divider { display: none; }
+      .brand { min-width: unset; }
+      .statstrip-grid { grid-template-columns: 1fr 1fr; }
+      .statstrip-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); padding: 12px 8px; }
+      .statstrip-item:last-child, .statstrip-item:nth-last-child(2) { border-bottom: none; }
+    }
+    @media (max-width: 480px) {
+      .statstrip-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── TOP NAV ── -->
+  <div class="topbar" id="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Fusion Solutions Group home">
+          <img
+            src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https%3A//assets.cdn.filesafe.space/hDlAVVXaiI6WXYQetaCT/media/680165918970b0fdcef03766.png"
+            alt="Fusion Solutions Group"
+            loading="eager"
+          />
+        </a>
+        <nav class="navlinks" id="navlinks" aria-label="Primary navigation">
+          <a href="#wins" data-section="wins">Wins</a>
+          <a href="#services" data-section="services">Services</a>
+          <a href="#scale" data-section="scale">S.C.A.L.E</a>
+          <a href="#fit" data-section="fit">Who It's For</a>
+          <a href="#faq" data-section="faq">FAQ</a>
+          <a href="https://fusionsg.com/techscale-blog" target="_blank" rel="noopener">TechScale Blog</a>
+        </nav>
+        <div class="navcta">
+          <a class="btn primary" href="#contact">Let's Talk</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="mobileMenu" id="mobileMenu" style="display:none;">
+        <div class="panel">
+          <a href="#wins">Wins</a>
+          <a href="#services">Services</a>
+          <a href="#scale">S.C.A.L.E</a>
+          <a href="#fit">Who It's For</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+          <a href="https://fusionsg.com/techscale-blog" target="_blank" rel="noopener">TechScale Blog</a>
+          <div class="row">
+            <a class="btn ghost" href="tel:+19706850220">Call</a>
+            <a class="btn primary" href="#contact">Let's Talk</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HERO ── -->
+  <header id="top" class="hero">
+    <div class="container">
+
+      <!-- Full-width centered headline -->
+      <div class="heroIntro">
+        <div class="eyebrow anim-1"><span class="dot"></span> Fractional CTO &middot; Systems Integrators</div>
+        <h1 class="anim-2">
+          More revenue is sitting with your <em>existing customers.</em><br/>
+          Let&rsquo;s go get it.
+        </h1>
+      </div>
+
+      <div class="heroGrid">
+        <div>
+          <p class="hero-problem anim-3">
+            Your team is maxed out. Margin is thin. You know there are more solutions you could be selling&mdash;you just don't have the senior tech leadership to go get them without breaking what's already working.
+          </p>
+
+          <p class="subhead anim-3">
+            Fusion Solutions Group brings Fractional CTO leadership and a proven expansion framework to low-voltage, AV, and smart building integrators&mdash;helping you add new technologies in disciplined phases, without chaos or distraction.
+          </p>
+
+          <div class="heroBullets anim-4">
+            <div class="bullet">
+              <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8.5-8.5 1.4 1.4z"/></svg></div>
+              <div>
+                <strong>Unlock new revenue streams</strong>
+                <span>Expand what you already do well&mdash;with the right vendor relationships and delivery model.</span>
+              </div>
+            </div>
+            <div class="bullet">
+              <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8.5-8.5 1.4 1.4z"/></svg></div>
+              <div>
+                <strong>Re-engage customers who already trust you</strong>
+                <span>Your install base is your best sales opportunity. We help you go back with new solutions they'll buy.</span>
+              </div>
+            </div>
+            <div class="bullet">
+              <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8.5-8.5 1.4 1.4z"/></svg></div>
+              <div>
+                <strong>Protect your core business</strong>
+                <span>Phased expansion with clear guardrails&mdash;no chaos, no distraction, no derailing what's already working.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="heroCtas anim-5">
+            <a class="btn primary btn-lg" href="#contact">Tell Us What You're Trying to Solve</a>
+            <a class="btn ghost btn-lg" href="#wins">See Real Results &rarr;</a>
+          </div>
+        </div>
+
+        <aside class="heroCard anim-3" aria-label="Is this a fit?">
+          <div class="ideal-badge">&#10022; Is This a Fit?</div>
+          <h3>Built for integrators between $2M&ndash;$20M who are ready to grow strategically.</h3>
+          <p>You get senior technology guidance and practical execution&mdash;without the cost or commitment of a full-time CTO.</p>
+
+          <div class="fit-checks">
+            <div class="fit-row"><span class="fit-yes">&#10003;</span><span>You're making critical technology decisions without senior tech leadership</span></div>
+            <div class="fit-row"><span class="fit-yes">&#10003;</span><span>You have growth ambitions but ops is already stretched</span></div>
+            <div class="fit-row"><span class="fit-yes">&#10003;</span><span>You want to add new offerings but don't know where to start</span></div>
+            <div class="fit-row"><span class="fit-yes">&#10003;</span><span>You've lost bids because your solution set was too narrow</span></div>
+            <div class="fit-row"><span class="fit-no">&#10007;</span><span>You need a full-time internal hire (we're fractional + focused)</span></div>
+            <div class="fit-row"><span class="fit-no">&#10007;</span><span>You're a $100M+ enterprise with an existing CTO team</span></div>
+          </div>
+
+          <div class="divider"></div>
+          <a class="btn primary" href="#contact" style="width:100%;justify-content:center;">Get a Free 30-Minute Strategy Call</a>
+          <p class="fine">No pitch. Just a real conversation about your growth bottlenecks.<br/>Prefer email? <a href="mailto:info@fusionsg.com">info@fusionsg.com</a></p>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── TRUST BAR ── -->
+  <div class="trustbar">
+    <div class="container">
+      <div class="trustbar-inner">
+        <span class="trustbar-label">Technologies we work with</span>
+        <div class="trustbar-divider"></div>
+        <div class="trustbar-logos">
+          <span class="trustbar-chip">Cambium</span>
+          <span class="trustbar-chip">RemoteLock</span>
+          <span class="trustbar-chip">Control4</span>
+          <span class="trustbar-chip">PDK</span>
+          <span class="trustbar-chip">Brilliant</span>
+          <span class="trustbar-chip">Alpha Vision</span>
+          <span class="trustbar-chip">Honeywell</span>
+          <span class="trustbar-chip">+ more</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STAT STRIP ── -->
+  <div class="statstrip">
+    <div class="container">
+      <div class="statstrip-grid">
+        <div class="statstrip-item">
+          <div class="stat-num"><span>300</span>%</div>
+          <div class="stat-label">YoY growth delivered<br>in Wi-Fi practice</div>
+        </div>
+        <div class="statstrip-item">
+          <div class="stat-num"><span>25</span>%</div>
+          <div class="stat-label">Average equipment<br>cost reduction</div>
+        </div>
+        <div class="statstrip-item">
+          <div class="stat-num">90<span> Days</span></div>
+          <div class="stat-label">Largest project in company<br>history delivered</div>
+        </div>
+        <div class="statstrip-item">
+          <div class="stat-num">$<span>2M&ndash;$20M</span></div>
+          <div class="stat-label">Sweet spot revenue range<br>for our engagements</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WINS ── -->
+  <section id="wins" class="wins-section">
+    <div class="container">
+      <div class="section-label">Real Results</div>
+      <h2>Wins we&rsquo;ve created for integrators</h2>
+      <p class="section-sub">Real outcomes delivered through strategy and execution&mdash;without derailing the businesses that hired us.</p>
+
+      <div class="wins-grid">
+        <article class="win reveal">
+          <div class="win-head">
+            <div class="win-num">01 &middot; Vendor Strategy</div>
+            <h3>Vendor Strategy That Tripled Growth</h3>
+          </div>
+          <div class="win-metric">
+            <div class="big">300%</div>
+            <div class="label">Year-over-year growth<br/>in Wi-Fi business &middot; 6 months</div>
+          </div>
+          <div class="win-body">
+            <div class="win-row"><b>The problem:</b> High equipment costs and complexity were slowing sales and deployments at a Smart Building company.</div>
+            <div class="win-row"><b>What we did:</b> Led full vendor selection, onboarding, and certification across Engineering, Operations, and Support.</div>
+            <div class="win-row"><b>The result:</b> 25% cost reduction + 300% YoY growth in Wi-Fi&mdash;in just 6 months.</div>
+          </div>
+        </article>
+
+        <article class="win reveal reveal-delay-1">
+          <div class="win-head">
+            <div class="win-num">02 &middot; Sales Process</div>
+            <h3>Sales Estimator Flooded the Pipeline</h3>
+          </div>
+          <div class="win-metric">
+            <div class="big">Weeks<br/><span style="font-size:22px;">&rarr; Minutes</span></div>
+            <div class="label">Proposal turnaround<br/>time reduction</div>
+          </div>
+          <div class="win-body">
+            <div class="win-row"><b>The problem:</b> Sales proposals were stalling for weeks while waiting on engineering estimates. Deals were slipping.</div>
+            <div class="win-row"><b>What we did:</b> Designed and built a self-serve sales estimator with real pricing logic and built-in assumptions.</div>
+            <div class="win-row"><b>The result:</b> Higher close rates, happier Sales team, and Engineering finally unblocked from proposal bottlenecks.</div>
+          </div>
+        </article>
+
+        <article class="win reveal reveal-delay-2">
+          <div class="win-head">
+            <div class="win-num">03 &middot; Project Execution</div>
+            <h3>Largest Project in Company History</h3>
+          </div>
+          <div class="win-metric">
+            <div class="big">90 Days</div>
+            <div class="label">Full comms overhaul<br/>delivered &middot; 5-star reviews</div>
+          </div>
+          <div class="win-body">
+            <div class="win-row"><b>The problem:</b> Largest client needed a full communication technology overhaul&mdash;with technology that was brand new to the company.</div>
+            <div class="win-row"><b>What we did:</b> Led a cross-functional team to research, design, and deploy the full solution in 90 days.</div>
+            <div class="win-row"><b>The result:</b> Delivered the largest project in company history with record 5-star reviews on Wi-Fi experience.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <div class="section-label">How We Help</div>
+      <h2>Fractional CTO support, focused where it matters</h2>
+      <p class="section-sub">We remove bottlenecks, strengthen delivery, and enable new offerings&mdash;without adding internal headcount or derailing your team.</p>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+          </div>
+          <div class="tag">Processes</div>
+          <h3>Fix what&rsquo;s slowing you down</h3>
+          <p>Operational clarity, repeatable delivery, and less firefighting across every team.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 10H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2z"/></svg>
+          </div>
+          <div class="tag">Products</div>
+          <h3>Align tech to what you sell</h3>
+          <p>Offer selection, packaging, and delivery design built for margin and growth.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+          </div>
+          <div class="tag">Tools</div>
+          <h3>Right-sized tools that actually help</h3>
+          <p>No tool sprawl, no shelfware. Just systems that reduce friction and cost.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <div class="tag">Teams</div>
+          <h3>Enable sales + ops to execute</h3>
+          <p>Training, handoffs, documentation, and accountability that actually sticks.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-4">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 11.5v-3h-4v-2h4v-3l4 4-4 4z"/></svg>
+          </div>
+          <div class="tag">Vendors</div>
+          <h3>Selection, onboarding, certification</h3>
+          <p>De-risk expansion with the right partners, contracts, and phased rollout plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MID-PAGE CTA ── -->
+  <div class="midcta">
+    <div class="container">
+      <div class="midcta-inner">
+        <div class="midcta-text">
+          <h3>Ready to find your next growth opportunity?</h3>
+          <p>Most integrators we talk to are sitting on <strong>untapped revenue in their existing customer base</strong>. A 30-minute call is all it takes to see where it's hiding.</p>
+        </div>
+        <a class="btn accent btn-lg" href="#contact" style="flex-shrink:0;">Book a Free Strategy Call &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── S.C.A.L.E ── -->
+  <section id="scale" class="scale-section">
+    <div class="container">
+      <div class="section-label">Our Framework</div>
+      <h2>The S.C.A.L.E Framework</h2>
+      <p class="section-sub">A proven system for technology expansion&mdash;from discovery to launch to continuous improvement. Every engagement follows this structure so you always know where you stand.</p>
+
+      <div class="scale-cards">
+        <div class="scale-card reveal">
+          <div class="scale-step-letter">
+            <span class="scale-lchar">S</span>
+            <span class="scale-lword">Survey</span>
+          </div>
+          <div class="scale-card-h3">Baseline reality</div>
+          <p class="scale-card-p">Deep assessment of your current tech stack, customer base, and competitive gaps. No assumptions.</p>
+        </div>
+        <div class="scale-card reveal reveal-delay-1">
+          <div class="scale-step-letter">
+            <span class="scale-lchar">C</span>
+            <span class="scale-lword">Clarify</span>
+          </div>
+          <div class="scale-card-h3">Align leadership</div>
+          <p class="scale-card-p">Make sure the plan matches your business strategy, culture, and actual capacity to execute.</p>
+        </div>
+        <div class="scale-card reveal reveal-delay-2">
+          <div class="scale-step-letter">
+            <span class="scale-lchar">A</span>
+            <span class="scale-lword">Architect</span>
+          </div>
+          <div class="scale-card-h3">Design the roadmap</div>
+          <p class="scale-card-p">Translate goals into a structured, phased plan with clear milestones, owners, and outcomes.</p>
+        </div>
+        <div class="scale-card reveal reveal-delay-3">
+          <div class="scale-step-letter">
+            <span class="scale-lchar">L</span>
+            <span class="scale-lword">Launch</span>
+          </div>
+          <div class="scale-card-h3">Move with discipline</div>
+          <p class="scale-card-p">Execute with a practical cadence&mdash;fast enough to build momentum, controlled enough to protect the core.</p>
+        </div>
+        <div class="scale-card reveal reveal-delay-4">
+          <div class="scale-step-letter">
+            <span class="scale-lchar">E</span>
+            <span class="scale-lword">Evaluate</span>
+          </div>
+          <div class="scale-card-h3">Close the loop</div>
+          <p class="scale-card-p">Measure results honestly, capture learnings, and refine for the next phase of growth.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:40px;text-align:center;">
+        <a class="btn outline-white btn-lg" href="#contact">Start with a Free Strategy Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHO IT'S FOR / NOT FOR ── -->
+  <section id="fit" class="fit-section">
+    <div class="container">
+      <div class="section-label">The Right Fit</div>
+      <h2>Who this is (and isn&rsquo;t) for</h2>
+      <p class="section-sub">We work best with a specific type of integrator. Being specific about who we serve means better outcomes for everyone.</p>
+
+      <div class="fit-grid">
+        <div class="fit-panel yes-panel reveal">
+          <h3>
+            <span class="badge badge-yes">&#10003;</span>
+            This is for you if&hellip;
+          </h3>
+          <div class="fit-list">
+            <div class="fit-item"><span class="fit-icon" style="color:#1a9e5c;">&#10003;</span><span>You're a low-voltage, AV, or smart building integrator doing $2M&ndash;$20M in revenue</span></div>
+            <div class="fit-item"><span class="fit-icon" style="color:#1a9e5c;">&#10003;</span><span>You're making critical technology decisions without dedicated senior tech leadership</span></div>
+            <div class="fit-item"><span class="fit-icon" style="color:#1a9e5c;">&#10003;</span><span>You have customers who trust you and could buy more&mdash;if you had more to sell</span></div>
+            <div class="fit-item"><span class="fit-icon" style="color:#1a9e5c;">&#10003;</span><span>You want to expand your offering but can't afford the risk of doing it wrong</span></div>
+            <div class="fit-item"><span class="fit-icon" style="color:#1a9e5c;">&#10003;</span><span>Your ops and sales teams are maxed out and need a structured plan, not more chaos</span></div>
+            <div class="fit-item"><span class="fit-icon" style="color:#1a9e5c;">&#10003;</span><span>You've lost bids because your solution set was too narrow compared to larger competitors</span></div>
+          </div>
+        </div>
+        <div class="fit-panel no-panel reveal reveal-delay-1">
+          <h3>
+            <span class="badge badge-no">&#10007;</span>
+            This is NOT for you if&hellip;
+          </h3>
+          <div class="fit-list">
+            <div class="fit-item"><span class="fit-icon" style="color:#d14b2a;">&#10007;</span><span>You need a full-time internal employee&mdash;we're a fractional, project-based engagement</span></div>
+            <div class="fit-item"><span class="fit-icon" style="color:#d14b2a;">&#10007;</span><span>You're a $100M+ enterprise with an existing CTO or technology leadership team</span></div>
+            <div class="fit-item"><span class="fit-icon" style="color:#d14b2a;">&#10007;</span><span>You're looking for a software development firm or IT managed services provider</span></div>
+            <div class="fit-item"><span class="fit-icon" style="color:#d14b2a;">&#10007;</span><span>You want a vendor to own the outcome&mdash;we equip your team to own execution</span></div>
+            <div class="fit-item"><span class="fit-icon" style="color:#d14b2a;">&#10007;</span><span>You're not ready to commit to a structured process&mdash;ad hoc consulting isn't how we work</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="faq-layout">
+        <div class="faq-sidebar">
+          <div class="section-label">FAQ</div>
+          <h3>Questions we actually hear in sales calls</h3>
+          <p>Not generic FAQ filler&mdash;these are the real objections and questions integrators bring us before signing on.</p>
+          <a class="btn primary" href="#contact">Still have questions? Let&rsquo;s talk</a>
+        </div>
+        <div class="faq" role="list">
+          <div class="qa open" role="listitem">
+            <button class="q" type="button">
+              Will this create more work for my team?
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(11,18,32,.40)" d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="a">
+              That's the most common concern&mdash;and it's fair. The first few weeks of any engagement require some time from your team to share context and align on priorities. After that, our job is to take things off your plate, not add to the pile. We run the research, vendor conversations, roadmap sessions, and process documentation. Your team shows up, gives input, and executes on a clear plan&mdash;rather than trying to figure it out while also doing their day job.
+            </div>
+          </div>
+
+          <div class="qa" role="listitem">
+            <button class="q" type="button">
+              How is this different from hiring a consultant for a one-off project?
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(11,18,32,.40)" d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="a">
+              A traditional consultant hands you a report and leaves. We stay through execution. Our engagements are structured around your actual business outcomes&mdash;not deliverables for their own sake. We use the S.C.A.L.E framework to make sure the strategy gets turned into action, your team is enabled to run it independently, and we measure whether it's actually working. Think of us as a part-time member of your leadership team, not an outside vendor.
+            </div>
+          </div>
+
+          <div class="qa" role="listitem">
+            <button class="q" type="button">
+              What does the first 30 days look like?
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(11,18,32,.40)" d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="a">
+              The first 30 days are all about the S (Survey) and C (Clarify) phases. We spend time deeply understanding your current tech stack, your customer base, your team's capacity, and where the real growth opportunities are hiding. By the end of month one, you'll have a clear picture of what's possible and a prioritized roadmap that your leadership team has actually signed off on&mdash;so we're all pulling in the same direction before anything gets built or launched.
+            </div>
+          </div>
+
+          <div class="qa" role="listitem">
+            <button class="q" type="button">
+              How does a Fractional CTO program work?
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(11,18,32,.40)" d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="a">
+              A Fractional CTO program gives you part-time access to senior technology leadership on a flexible contract&mdash;without the cost, commitment, or ramp time of a full-time hire. You get deep experience across strategy, vendor selection, team enablement, and execution. Engagements are scoped around your specific goals and can range from a focused 90-day sprint to an ongoing monthly advisory relationship.
+            </div>
+          </div>
+
+          <div class="qa" role="listitem">
+            <button class="q" type="button">
+              What types of businesses benefit most?
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path fill="rgba(11,18,32,.40)" d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="a">
+              We work best with low-voltage, AV, and smart building integrators in the $2M&ndash;$20M range who are growing but don't yet have the internal tech leadership to grow strategically. If you're making technology decisions by gut feel, losing bids to competitors with broader solution sets, or watching margin erode because your processes haven't kept pace with your growth&mdash;we're built for you.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="section-label">Get In Touch</div>
+      <h2>Tell us what you&rsquo;re trying to solve</h2>
+      <p class="section-sub">We reply quickly with honest next steps&mdash;whether that's a call, a scoping session, or just an answer to your question.</p>
+
+      <div class="contactGrid">
+        <div class="panel">
+          <h3>Reach us directly</h3>
+          <p>Fastest way to reach us for scheduling, questions, or a quick gut-check on whether we're the right fit.</p>
+
+          <div class="contactList">
+            <a href="tel:+19706850220" class="contactItem">
+              <div class="c-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.3 2.5 3.1 4.3 5.6 5.6l1.9-1.9c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.1 21 3 13.9 3 5c0-.6.4-1 1-1h3.9c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-1.9 1.9z"/></svg>
+              </div>
+              <div>
+                <div class="clabel">Phone</div>
+                <div class="val">+1 (970) 685-0220</div>
+              </div>
+            </a>
+            <a href="mailto:info@fusionsg.com" class="contactItem">
+              <div class="c-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </div>
+              <div>
+                <div class="clabel">Email</div>
+                <div class="val">info@fusionsg.com</div>
+              </div>
+            </a>
+            <a href="https://www.fusionsg.com" target="_blank" rel="noopener" class="contactItem">
+              <div class="c-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+              </div>
+              <div>
+                <div class="clabel">Website</div>
+                <div class="val">www.fusionsg.com</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Request a free 30-minute strategy call</h3>
+          <p>Tell us what you're trying to add or fix. No pitch&mdash;just a real conversation.</p>
+
+          <div id="formSuccess" class="form-success">
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8.5-8.5 1.4 1.4z"/></svg>
+            </div>
+            <h4>Message Sent!</h4>
+            <p>Thanks for reaching out. We'll be in touch within one business day to schedule your strategy call.</p>
+          </div>
+
+          <form id="contactForm">
+            <div class="formRow">
+              <div class="field">
+                <label for="name">Your Name</label>
+                <input id="name" name="name" autocomplete="name" placeholder="First &amp; last name" required />
+              </div>
+              <div class="field">
+                <label for="company">Company</label>
+                <input id="company" name="company" autocomplete="organization" placeholder="Your company name" />
+              </div>
+            </div>
+            <div class="formRow">
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required />
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" autocomplete="tel" placeholder="(###) ###-####" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="revenue">Annual Revenue Range</label>
+              <select id="revenue" name="revenue">
+                <option value="">Select range (optional)</option>
+                <option>Under $2M</option>
+                <option>$2M &ndash; $5M</option>
+                <option>$5M &ndash; $10M</option>
+                <option>$10M &ndash; $20M</option>
+                <option>Over $20M</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">What are you trying to add or fix?</label>
+              <textarea id="message" name="message" placeholder="Example: We want to add access control and video to our Wi-Fi practice, but our ops team is already maxed out and we don't know which vendors to partner with..." required></textarea>
+            </div>
+            <button class="btn primary btn-lg" type="submit" style="width:100%;justify-content:center;">Send Message &amp; Request a Call</button>
+            <p class="fine" style="text-align:left;margin-top:8px;">By submitting, you'll open your email client with this message pre-filled. We typically respond within one business day.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div class="foot-brand">
+          <img
+            src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https%3A//assets.cdn.filesafe.space/hDlAVVXaiI6WXYQetaCT/media/680165918970b0fdcef03766.png"
+            alt="Fusion Solutions Group"
+          />
+        </div>
+        <div class="copy">&copy; <span id="year"></span> Fusion Solutions Group. All rights reserved.</div>
+        <div class="miniLinks">
+          <a href="#top">&uarr; Top</a>
+          <a href="mailto:info@fusionsg.com">Email</a>
+          <a href="tel:+19706850220">Call</a>
+          <a href="https://fusionsg.com/techscale-blog" target="_blank" rel="noopener">Blog</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── MOBILE MENU ── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function setMenu(open) {
+      mobileMenu.style.display = open ? 'block' : 'none';
+      hamburger.setAttribute('aria-expanded', open);
+      hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    hamburger?.addEventListener('click', () => {
+      setMenu(hamburger.getAttribute('aria-expanded') !== 'true');
+    });
+    mobileMenu?.addEventListener('click', e => {
+      if (e.target?.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) setMenu(false);
+    });
+
+    /* ── SCROLL: topbar shadow + nav active ── */
+    const topbar = document.getElementById('topbar');
+    const sections = document.querySelectorAll('header[id], section[id]');
+    const navLinks = document.querySelectorAll('.navlinks a[data-section]');
+
+    function onScroll() {
+      topbar.classList.toggle('scrolled', window.scrollY > 20);
+
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.dataset.section === current);
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* ── FAQ ACCORDION ── */
+    document.querySelectorAll('.qa .q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.qa');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.qa').forEach(x => x.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    /* ── CONTACT FORM → MAILTO ── */
+    document.getElementById('contactForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      const name    = document.getElementById('name')?.value?.trim();
+      const company = document.getElementById('company')?.value?.trim();
+      const email   = document.getElementById('email')?.value?.trim();
+      const phone   = document.getElementById('phone')?.value?.trim();
+      const revenue = document.getElementById('revenue')?.value?.trim();
+      const message = document.getElementById('message')?.value?.trim();
+      if (!name || !email || !message) return;
+
+      const subject = encodeURIComponent(`Strategy Call Request — ${company ? company + ' — ' : ''}${name}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nCompany: ${company || '—'}\nEmail: ${email}\nPhone: ${phone || '—'}\nRevenue Range: ${revenue || '—'}\n\nMessage:\n${message}\n`
+      );
+      window.location.href = `mailto:info@fusionsg.com?subject=${subject}&body=${body}`;
+
+      // Show success state
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('formSuccess').classList.add('visible');
+    });
+
+    /* ── FOOTER YEAR ── */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ── SCROLL-REVEAL ── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+
+</body>
+</html>
